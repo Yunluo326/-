@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的旅游项目 - 推动乡镇发展</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: slideInDown 1s ease-out;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: slideInUp 1s ease-out;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .idea-section {
+            grid-column: span 2;
+        }
+
+        .progress-bar {
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            height: 20px;
+            width: 0%;
+            transition: width 2s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+
+        .feature-list li:hover {
+            background: #f8f9fa;
+            padding-left: 20px;
+        }
+
+        .contact-form {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            placeholder-color: rgba(255, 255, 255, 0.7);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .stat-item {
+            flex: 1;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #667eea;
+            display: block;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+            .idea-section {
+                grid-column: span 1;
+            }
+            .header h1 {
+                font-size: 2em;
+            }
+        }
+
+        .typing {
+            overflow: hidden;
+            border-right: .15em solid orange;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: orange; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌄 我的旅游项目</h1>
+            <p class="typing">用AI技术推动乡镇旅游发展，让每个小镇都有自己的故事</p>
+        </div>
+
+        <div class="content">
+            <div class="card idea-section">
+                <h2>💡 项目愿景</h2>
+                <p>创建一个智能旅游平台，专门为中国的乡镇旅游服务，结合AI技术为每个小镇量身定制推广方案。</p>
+                
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress">项目进度: 15%</div>
+                </div>
+
+                <ul class="feature-list">
+                    <li>🏞️ 乡镇风景AI识别和智能推荐</li>
+                    <li>🍜 本地美食电商直供平台</li>
+                    <li>📍 智能路径规划和导航</li>
+                    <li>🤖 AI客服和个性化服务</li>
+                    <li>👥 青年返乡创业支持系统</li>
+                    <li>📊 数据分析助力乡镇决策</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>🎯 目标市场</h2>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="1000">0</span>
+                        <span>目标乡镇</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="50000">0</span>
+                        <span>潜在用户</span>
+                    </div>
+                </div>
+                <p>专注于那些有特色但缺乏推广渠道的美丽乡镇，为它们提供现代化的数字营销解决方案。</p>
+            </div>
+
+            <div class="card">
+                <h2>📈 技术实现</h2>
+                <ul>
+                    <li><strong>前端：</strong> React + TypeScript</li>
+                    <li><strong>后端：</strong> Python + FastAPI</li>
+                    <li><strong>AI：</strong> OpenAI API + 百度地图API</li>
+                    <li><strong>数据库：</strong> PostgreSQL + Redis</li>
+                    <li><strong>部署：</strong> Docker + 阿里云</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="contact-form">
+            <h2>💌 联系合作</h2>
+            <p>如果你对这个项目感兴趣，或者你的家乡也需要这样的推广，请联系我！</p>
+            
+            <form id="contactForm">
+                <div class="form-group">
+                    <input type="text" placeholder="你的姓名" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="邮箱地址" required>
+                </div>
+                <div class="form-group">
+                    <textarea rows="4" placeholder="告诉我你的想法或你家乡的特色..."></textarea>
+                </div>
+                <button type="submit" class="btn">发送消息 🚀</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // 页面加载动画
+        window.addEventListener('load', function() {
+            console.log('🎉 升级版网站加载完成！');
+            
+            // 进度条动画
+            setTimeout(() => {
+                document.getElementById('progress').style.width = '15%';
+            }, 1000);
+
+            // 数字计数动画
+            const counters = document.querySelectorAll('.stat-number');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const increment = target / 100;
+                let current = 0;
+                
+                const updateCounter = () => {
+                    if (current < target) {
+                        current += increment;
+                        counter.textContent = Math.ceil(current);
+                        setTimeout(updateCounter, 50);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
+                
+                setTimeout(updateCounter, 2000);
+            });
+        });
+
+        // 表单提交处理
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('感谢你的关注！这是一个演示版本，实际项目中会有真实的后端处理。');
+        });
+
+        // 添加点击特效
+        document.addEventListener('click', function(e) {
+            const ripple = document.createElement('div');
+            ripple.style.position = 'absolute';
+            ripple.style.borderRadius = '50%';
+            ripple.style.background = 'rgba(255, 255, 255, 0.5)';
+            ripple.style.transform = 'scale(0)';
+            ripple.style.animation = 'ripple 0.6s linear';
+            ripple.style.left = (e.clientX - 10) + 'px';
+            ripple.style.top = (e.clientY - 10) + 'px';
+            ripple.style.width = '20px';
+            ripple.style.height = '20px';
+            ripple.style.pointerEvents = 'none';
+            
+            document.body.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+
+        // 添加CSS动画
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html> 
